@@ -26,7 +26,7 @@ public class IrEntity {
     private String nacionalidad;
     @Column(name = "almaMater")
     private String almaMater;
-    @Column(name = "bio")
+    @Column(name = "bio", length = 5000)
     private String bio;
     @Lob
     @Column(name = "foto", columnDefinition = "mediumblob")
