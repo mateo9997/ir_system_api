@@ -4,6 +4,7 @@ package com.backend.ir_system_api.controller;
 import com.backend.ir_system_api.model.User;
 import com.backend.ir_system_api.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,6 +53,15 @@ public class UserController {
     public ResponseEntity<User> updateUser(@PathVariable("id") Long id,
                                            @RequestBody User user) {
         user = userService.updateUser(id,user);
+        return ResponseEntity.ok(user);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<User> loginUser(@RequestBody User loginUser) {
+        User user = userService.findByEmail(loginUser.getEmailId());
+        if (user == null || !user.getPassword().equals(loginUser.getPassword())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
         return ResponseEntity.ok(user);
     }
 

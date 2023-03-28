@@ -95,7 +95,10 @@ public class IrServiceImpl implements IrService{
             irEntity.setNacionalidad(irDetails.getNacionalidad());
             irEntity.setAlmaMater(irDetails.getAlmaMater());
             irEntity.setBio(irDetails.getBio());
-            irEntity.setFoto(irDetails.getFoto());
+
+            if(irDetails.getFoto() != null) {
+                irEntity.setFoto(irDetails.getFoto());
+            }
 
             // Save the updated IrEntity object to the database
             irRepository.save(irEntity);
@@ -111,5 +114,6 @@ public class IrServiceImpl implements IrService{
             throw new NoSuchElementException("Ir with nombre: " + nombre + " was not found.");
         }
     }
+
 
 }

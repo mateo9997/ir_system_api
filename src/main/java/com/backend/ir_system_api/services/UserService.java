@@ -14,4 +14,5 @@ public interface UserService {
     boolean deleteUser(Long id);
 
     User updateUser(Long id, User user);
+    User findByEmail(String email);
 }

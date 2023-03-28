@@ -14,13 +14,23 @@ public class UserEntity {
     private String lastName;
     private String emailId;
     private String password;
+    private String userRole;
 
-    public UserEntity(long id, String firstName, String lastName, String emailId, String password) {
+    public UserEntity(long id, String firstName, String lastName, String emailId, String password, String userRole) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailId = emailId;
         this.password = password;
+        this.userRole = userRole;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 
     public UserEntity() {

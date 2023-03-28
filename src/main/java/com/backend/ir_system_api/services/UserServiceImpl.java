@@ -40,7 +40,8 @@ public class UserServiceImpl implements UserService{
                         userEntity.getFirstName(),
                         userEntity.getLastName(),
                         userEntity.getEmailId(),
-                        userEntity.getPassword()
+                        userEntity.getPassword(),
+                        userEntity.getUserRole()
                 ))
                 .collect(Collectors.toList());
 
@@ -70,8 +71,21 @@ public class UserServiceImpl implements UserService{
         userEntity.setEmailId(user.getEmailId());
         userEntity.setFirstName(user.getFirstName());
         userEntity.setLastName(user.getLastName());
+        userEntity.setUserRole(user.getUserRole());
+        userEntity.setPassword(user.getPassword());
 
         userRepository.save(userEntity);
+        return user;
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        UserEntity userEntity = userRepository.findByEmailId(email);
+        if (userEntity == null) {
+            return null;
+        }
+        User user = new User();
+        BeanUtils.copyProperties(userEntity, user);
         return user;
     }
 

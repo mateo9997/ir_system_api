@@ -6,6 +6,7 @@ public class User {
     private String lastName;
     private String emailId;
     private String password;
+    private String userRole;
 
     public long getId() {
         return id;
@@ -14,6 +15,7 @@ public class User {
     public void setId(long id) {
         this.id = id;
     }
+    public Boolean isAdmin(){return userRole=="admin";}
 
     public String getFirstName() {
         return firstName;
@@ -47,12 +49,21 @@ public class User {
         this.password = password;
     }
 
-    public User(long id, String firstName, String lastName, String emailId, String password) {
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
+    }
+
+    public User(long id, String firstName, String lastName, String emailId, String password, String userRole) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailId = emailId;
         this.password = password;
+        this.userRole = userRole;
     }
 
     public User() {
