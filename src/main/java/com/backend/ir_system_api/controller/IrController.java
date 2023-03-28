@@ -35,9 +35,13 @@ public class IrController {
     }
     //Sends all the ir objects to the front
     @GetMapping("/irs")
-    public List<Ir> getAllIr() {
-        return irService.getAllIr();
+    public List<Ir> getAllIr(
+            @RequestParam(value = "orderBy", required = false, defaultValue = "nombre") String orderBy,
+            @RequestParam(value = "order", required = false, defaultValue = "asc") String order
+    ) {
+        return irService.getAllIr(orderBy, order);
     }
+
     @DeleteMapping("/irs/{nombre}")
     public ResponseEntity<Map<String,Boolean>> deleteIr(@PathVariable("nombre") String nombre) {
         boolean deleted =false;
@@ -66,6 +70,7 @@ public class IrController {
         ir = irService.updateIr(nombre, ir);
         return ResponseEntity.ok(ir);
     }
+
 
 
 }

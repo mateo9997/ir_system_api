@@ -8,11 +8,12 @@ import java.util.List;
 public interface IrService {
     Ir SaveIr(Ir ir);
 
-    List<Ir> getAllIr();
+    List<Ir> getAllIr(String orderBy, String order);
 
     boolean deleteIr(String nombre);
 
     Ir getIrByNombre(String nombre);
 
     Ir updateIr(String nombre, Ir irDetails);
+
 }

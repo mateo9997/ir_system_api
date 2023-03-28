@@ -4,6 +4,7 @@ import com.backend.ir_system_api.entity.IrEntity;
 import com.backend.ir_system_api.model.Ir;
 import com.backend.ir_system_api.repository.IrRepository;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,10 +35,10 @@ public class IrServiceImpl implements IrService{
     }
 
     @Override
-    public List<Ir> getAllIr() {
-        //Getting all the data
-        List<IrEntity> irEntities
-                = irRepository.findAll();
+    public List<Ir> getAllIr(String orderBy, String order) {
+        // Add sorting based on the orderBy and order parameters
+        Sort sort = Sort.by(order.equalsIgnoreCase("asc") ? Sort.Direction.ASC : Sort.Direction.DESC, orderBy);
+        List<IrEntity> irEntities = irRepository.findAll(sort);
 
         List<Ir> irs = irEntities
                 .stream()
@@ -114,6 +115,7 @@ public class IrServiceImpl implements IrService{
             throw new NoSuchElementException("Ir with nombre: " + nombre + " was not found.");
         }
     }
+
 
 
 }
